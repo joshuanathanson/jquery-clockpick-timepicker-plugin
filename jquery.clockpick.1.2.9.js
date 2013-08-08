@@ -3,7 +3,6 @@ ClockPick, by Josh Nathanson
 Version 1.2.9
 Timepicker plugin for jQuery
 See copyright at end of file
-Complete documentation at http://www.jnathanson.com/index.cfm?page=jquery/clockpick/ClockPick
 name	 clockpick
 type	 jQuery
 param	 options                  hash                    object containing config options
@@ -17,7 +16,6 @@ param	 options[layout]          string                  set div layout to vertic
                                   ('vertical','horizontal')
 param	 options[valuefield]      string                  field to insert time value, if not same as click field
                                   (name of input field)
-param	 options[useBgiframe]	  bool					  set true if using bgIframe plugin
 param	 options[hoursopacity]	  float					  set opacity of hours container
 param 	 options[minutesopacity]  float					  set opacity of minutes container
 param	 callback                 function                callback function - gets passed back the time value as a 
@@ -35,7 +33,6 @@ jQuery.fn.clockpick = function(options, callback) {
 		event           : 'click',
 		layout			: 'vertical',
 		valuefield		: null,
-		useBgiframe		: false,
 		hoursopacity	: 1,
 		minutesopacity  : 1
 		};
@@ -73,7 +70,7 @@ jQuery.fn.clockpick = function(options, callback) {
 		// add class "CP" for mouseout recognition, although there is only
 		// one hourcont on the screen at a time
 		var $hourcont = jQuery("<div id='CP_hourcont' class='CP' />").appendTo( $body );
-		!settings.useBgiframe ? $hourcont.css("opacity",settings.hoursopacity) : null;
+		$hourcont.css("opacity",settings.hoursopacity);
 		binder( $hourcont );
 		
 		var $hourcol1 = jQuery("<div class='CP_hourcol' id='hourcol1' />").appendTo( $body );
@@ -82,7 +79,7 @@ jQuery.fn.clockpick = function(options, callback) {
 		// if showminutes, append minutes cont to body
 		if (settings.showminutes) {
 			var $mc = jQuery("<div id='CP_minutecont' class='CP' />").appendTo( $body );
-			!settings.useBgiframe ? $mc.css("opacity",settings.minutesopacity) : null;
+			$mc.css("opacity",settings.minutesopacity)
 			binder($mc);
 		}
 		if ( !v ) {
@@ -121,9 +118,11 @@ jQuery.fn.clockpick = function(options, callback) {
 				if ( settings.military && h < 10 ) {
 					displayhours = '0' + displayhours;
 				}
+				if ( settings.military ) {
+					displayhours += ':00';
+				}
 				var $hd = jQuery("<div class='CP_hour' id='hr_" + h + "_" + c + "'>" + displayhours + set_tt(h) + "</div>");
 				// shrink width a bit if military
-				if (settings.military) { $hd.width(20); }
 				binder($hd);
 				if (!v) {
 					$hd.css("float","left");
@@ -186,10 +185,7 @@ jQuery.fn.clockpick = function(options, callback) {
 			else {
 				$self.after($hourcont);
 			}
-			$hourcont.slideDown('fast');
-			
-			if ( settings.useBgiframe )
-				bgi( $hourcont );			
+			$hourcont.slideDown('fast');		
 		}
 		
 		function rectify($obj) { 
@@ -215,13 +211,6 @@ jQuery.fn.clockpick = function(options, callback) {
 			if ( l <= 0 ) {
 				$obj.css("left", '10px');
 			}
-		}
-		
-		function bgi( ob ) {
-			if ( typeof jQuery.fn.bgIframe == 'function' )
-				ob.bgIframe();
-			else
-				alert('bgIframe plugin not loaded.');
 		}
 		
 		function binder($obj) {
@@ -323,9 +312,6 @@ jQuery.fn.clockpick = function(options, callback) {
 				$mc.css("left",l+'px').css("top",t+'px');
 				rectify( $mc );
 				$mc.show();
-				
-				if ( settings.useBgiframe )
-					bgi( $mc );
 			}
 			return false;
 		}
@@ -561,7 +547,7 @@ jQuery.fn.clockpick = function(options, callback) {
 
 /*
 +-----------------------------------------------------------------------+
-| Copyright (c) 2007-2010 Josh Nathanson                  |
+| Copyright (c) 2007-2013 Josh Nathanson                  |
 | All rights reserved.                                                  |
 |                                                                       |
 | Redistribution and use in source and binary forms, with or without    |
