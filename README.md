@@ -1,6 +1,8 @@
 jquery-clockpick-timepicker-plugin
 ==================================
 
+<h4><a href="http://www.jnathanson.com/index.cfm?page=jquery/clockpick/ClockPick">Click here to view a ClockPick demo</a></h4>
+
 <h2>Configuration</h2>
 <table width="640" border="0" cellpadding="6" cellspacing="1">
 <tr bgcolor="#f2f2f2">
