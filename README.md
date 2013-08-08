@@ -40,16 +40,6 @@ valuefield : 'myfieldname' <br>
 </strong><br>
 </p></td>
 </tr>
-<tr bgcolor="#dddddd">
-<td align="right" valign="top"><h3>Using bgIframe plugin </h3></td>
-<td><p>To account for the notorious IE6 select menu show-through issue, a popular jQuery plugin called <a href="http://jquery.com/plugins/files/bgiframe-2.1.zip">bgIframe</a> is frequently used. ClockPick offers support for this plugin by setting a configuration variable useBgiframe = true. By doing this, ClockPick calls the bgiFrame plugin at the right time so its divs are shown above any select menus that might be nearby.</p>
-<p>First you will need to include the <a href="http://jquery.com/plugins/files/bgiframe-2.1.zip">bgIframe plugin</a>, somewhere afer your include of the jQuery library: <br>
-<strong>&lt;script src=&quot;/path/to/bgiframeplugin.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt; </strong></p>
-<p>Then set the configuration variable when you call ClockPick:<strong><br>
-$(&quot;.clockpick&quot;).clockpick({<br>
-useBgiframe : true <br>
-}); </strong> </p></td>
-</tr>
 </table>
 <br>
 <br>
