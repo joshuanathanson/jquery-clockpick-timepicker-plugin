@@ -379,7 +379,7 @@ jQuery.fn.clockpick = function(options, callback) {
 		function keyhandler( e ) {
 			
 			// $obj is current active div
-			var $obj = $("div.CP_over").size() ? $("div.CP_over") : $("div.CP_hour:first"),
+			var $obj = $("div.CP_over").length ? $("div.CP_over") : $("div.CP_hour:first"),
 				divtype = $obj.is(".CP_hour") ? 'hour' : 'minute',
 				hi = (divtype == 'hour') ? $obj[0].id.split('_')[2] : 0, // hour index
 				h = (divtype == 'minute') ? $obj[0].id.split('_')[0] : $obj[0].id.split('_')[1]; // real hour 
@@ -389,7 +389,7 @@ jQuery.fn.clockpick = function(options, callback) {
 				{ var curloc = h<12 ? 'h1' : 'h2' }
 			
 			function divprev($obj) {
-				if ($obj.prev().size()) {
+				if ($obj.prev().length) {
 					eval(divtype + 'div_out($obj)');
 					eval(divtype + 'div_over($obj.prev(), e)');
 				}
@@ -397,7 +397,7 @@ jQuery.fn.clockpick = function(options, callback) {
 			}
 			
 			function divnext($obj) {
-				if ($obj.next().size()) {
+				if ($obj.next().length) {
 					eval(divtype + 'div_out($obj)');
 					eval(divtype + 'div_over($obj.next(), e)');
 				}
@@ -407,7 +407,7 @@ jQuery.fn.clockpick = function(options, callback) {
 			function hourtohour($obj) {
 				var ctx = h>=12 ? '#hourcol1' : '#hourcol2';
 				$newobj = jQuery(".CP_hour[id$=_" + hi + "]", ctx );
-				if ($newobj.size()) {
+				if ($newobj.length) {
 					hourdiv_out($obj);
 					hourdiv_over($newobj, e);
 				}
