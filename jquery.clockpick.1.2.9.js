@@ -547,7 +547,7 @@ jQuery.fn.clockpick = function(options, callback) {
 
 /*
 +-----------------------------------------------------------------------+
-| Copyright (c) 2007-2013 Josh Nathanson                  |
+| Copyright (c) 2007-2026 Josh Nathanson                  |
 | All rights reserved.                                                  |
 |                                                                       |
 | Redistribution and use in source and binary forms, with or without    |
